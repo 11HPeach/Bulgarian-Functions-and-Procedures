@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Numerics;
 
 namespace FunctionsAndProcedures
 {
 	/// <summary>
-	/// Tasks 1-7 from page 347 of the book "Fundamentals of Computer Programming with C# (The Bulgarian C# Book)"
+	/// Tasks 1-8 from page 347 of the book "Fundamentals of Computer Programming with C# (The Bulgarian C# Book)"
 	/// </summary>
 	internal class Program
 	{
-		private static void Main(string[] args)
+		private static void Main()
 		{
 			// Sample data to test program operation
 			int[] digitArray = {1, 7, 2, 4, 7, 1, 2, 7, 4, 4};
+			BigInteger[] bigDigitArray1 = { 1, 5, 8, 2, 6 };
+			BigInteger[] bigDigitArray2 = { 7, 9, 8, 0, 9 };
 			const int digitOperableValue = 4;
 
 			Task1("Peter");
@@ -24,6 +25,7 @@ namespace FunctionsAndProcedures
 			Task5(digitArray, 5);
 			Console.WriteLine("The first occurence of a greater-than-both value is at index: {0}", Task6(digitArray));
 			Console.WriteLine("1234567890 backwards is {0}", Task7(1234567890));
+			Console.WriteLine("{0} + {1} is equal to {2}", StupidIntArrayToInt(bigDigitArray1), StupidIntArrayToInt(bigDigitArray2), Task8(bigDigitArray1, bigDigitArray2));
 		}
 
 		/// <summary>
@@ -151,6 +153,39 @@ namespace FunctionsAndProcedures
 			char[] charArray = num.ToString().ToCharArray();
 			Array.Reverse(charArray);
 			return int.Parse(new string(charArray));
+		}
+		/// <summary>
+		/// Write a method that calculates the sum of two very long positive 
+		/// integer numbers.The numbers are represented as array digits and
+		/// the last digit (the ones) is stored in the array at index 0. Make the
+		/// method work for all numbers with length up to 10,000 digits.
+		/// </summary>
+		/// <param name="integer1"></param>
+		/// <param name="integer2"></param>
+		/// <returns></returns>
+		private static BigInteger Task8(BigInteger[] integer1, BigInteger[] integer2)
+		{
+			return StupidIntArrayToInt(integer1) + StupidIntArrayToInt(integer2);
+		}
+
+		private static BigInteger StupidIntArrayToInt(BigInteger[] intArray)
+		{
+			string intString = "";
+			for (int index = 0; index < intArray.Length; index++)
+			{
+				BigInteger t = intArray[index];
+				if (index == 0)	continue;
+				if (index == intArray.Length - 1)
+				{
+					intString += t.ToString();
+					intString += intArray[0].ToString();
+				}
+				else
+				{
+					intString += t.ToString();
+				}
+			}
+			return BigInteger.Parse(intString);
 		}
 	}
 }
