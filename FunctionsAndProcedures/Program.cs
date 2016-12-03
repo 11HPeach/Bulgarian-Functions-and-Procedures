@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 
@@ -18,6 +19,7 @@ namespace FunctionsAndProcedures
 			BigInteger[] bigDigitArray2 = { 7, 9, 8, 0, 9 };
 			const int digitOperableValue = 4;
 
+			// Program Testing
 			Task1("Peter");
 			Task2(9, 12, 8);
 			Console.WriteLine(Task3(198765));
@@ -26,6 +28,8 @@ namespace FunctionsAndProcedures
 			Console.WriteLine("The first occurence of a greater-than-both value is at index: {0}", Task6(digitArray));
 			Console.WriteLine("1234567890 backwards is {0}", Task7(1234567890));
 			Console.WriteLine("{0} + {1} is equal to {2}", StupidIntArrayToInt(bigDigitArray1), StupidIntArrayToInt(bigDigitArray2), Task8(bigDigitArray1, bigDigitArray2));
+
+			Console.Write("The descending of var digitArray is: [{0}] \n", string.Join(",", Task9(digitArray)));
 		}
 
 		/// <summary>
@@ -154,6 +158,7 @@ namespace FunctionsAndProcedures
 			Array.Reverse(charArray);
 			return int.Parse(new string(charArray));
 		}
+
 		/// <summary>
 		/// Write a method that calculates the sum of two very long positive 
 		/// integer numbers.The numbers are represented as array digits and
@@ -168,6 +173,11 @@ namespace FunctionsAndProcedures
 			return StupidIntArrayToInt(integer1) + StupidIntArrayToInt(integer2);
 		}
 
+		/// <summary>
+		/// Helper method for Task 8 to convert arrays to big ints
+		/// </summary>
+		/// <param name="intArray">BigInt array to convert</param>
+		/// <returns>Special bigint value of array</returns>
 		private static BigInteger StupidIntArrayToInt(BigInteger[] intArray)
 		{
 			string intString = "";
@@ -186,6 +196,25 @@ namespace FunctionsAndProcedures
 				}
 			}
 			return BigInteger.Parse(intString);
+		}
+
+		/// <summary>
+		/// Write a method that finds the biggest element of an array. 
+		/// Use that method to implement sorting in descending order.
+		/// </summary>
+		/// <param name="arrayToSort">The array to sort in descending order.</param>
+		/// <returns>A sorted integer array.</returns>
+		private static IEnumerable<int> Task9(IReadOnlyCollection<int> arrayToSort)
+		{
+			List<int> oldArray = arrayToSort.ToList();
+			List<int> newArray = new List<int>();
+
+			for (int index = 0; index < arrayToSort.Count; index++)
+			{
+				newArray.Add(oldArray.Max());
+				oldArray.RemoveAt(oldArray.IndexOf(oldArray.Max()));
+			}
+			return newArray.ToArray();
 		}
 	}
 }
