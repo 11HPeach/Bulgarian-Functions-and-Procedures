@@ -23,6 +23,7 @@ namespace FunctionsAndProcedures
 			Console.WriteLine("The value {0} was found in the array {1} times.", digitOperableValue, Task4(digitArray, digitOperableValue));
 			Task5(digitArray, 5);
 			Console.WriteLine("The first occurence of a greater-than-both value is at index: {0}", Task6(digitArray));
+			Console.WriteLine("1234567890 backwards is {0}", Task7(1234567890));
 		}
 
 		/// <summary>
@@ -124,11 +125,11 @@ namespace FunctionsAndProcedures
 		/// </summary>
 		/// <param name="intArray"></param>
 		/// <returns></returns>
-		private static int Task6(int[] intArray)
+		private static int Task6(IReadOnlyList<int> intArray)
 		{
-			for (int index = 0; index < intArray.Length; index++)
+			for (int index = 0; index < intArray.Count; index++)
 			{
-				if (index == 0 || index == intArray.Length - 1 || index >= intArray.Length) continue;
+				if (index == 0 || index == intArray.Count - 1 || index >= intArray.Count) continue;
 				int prevNeighbour = intArray[index - 1];
 				int nextNeighbour = intArray[index + 1];
 				if (GetMax(prevNeighbour, intArray[index]) == intArray[index] &&
@@ -138,6 +139,18 @@ namespace FunctionsAndProcedures
 				}
 			}
 			return -1;
+		}
+
+		/// <summary>
+		/// Write a method that prints the digits of a given decimal number in a reversed order. 
+		/// For example 256, must be printed as 652.
+		/// </summary>
+		/// <param name="num">Number to be reversed</param>
+		private static int Task7(int num)
+		{
+			char[] charArray = num.ToString().ToCharArray();
+			Array.Reverse(charArray);
+			return int.Parse(new string(charArray));
 		}
 	}
 }
