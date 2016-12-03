@@ -22,6 +22,7 @@ namespace FunctionsAndProcedures
 			Console.WriteLine(Task3(198765));
 			Console.WriteLine("The value {0} was found in the array {1} times.", digitOperableValue, Task4(digitArray, digitOperableValue));
 			Task5(digitArray, 5);
+			Console.WriteLine("The first occurence of a greater-than-both value is at index: {0}", Task6(digitArray));
 		}
 
 		/// <summary>
@@ -114,6 +115,29 @@ namespace FunctionsAndProcedures
 			Console.WriteLine(GetMax(prevNeighbour, index) == index && GetMax(nextNeighbour, index) == index ?
 				$"The value at index {index} is greater than each of it's neighbours." :
 				$"The value at index {index} is not greater than one or more of it's neighbours.");
+		}
+
+		/// <summary>
+		/// Write a method that returns the position of the first occurrence of an element from an array,
+		/// such that it is greater than its two neighbors simultaneously.
+		/// Otherwise the result must be -1.
+		/// </summary>
+		/// <param name="intArray"></param>
+		/// <returns></returns>
+		private static int Task6(int[] intArray)
+		{
+			for (int index = 0; index < intArray.Length; index++)
+			{
+				if (index == 0 || index == intArray.Length - 1 || index >= intArray.Length) continue;
+				int prevNeighbour = intArray[index - 1];
+				int nextNeighbour = intArray[index + 1];
+				if (GetMax(prevNeighbour, intArray[index]) == intArray[index] &&
+				    GetMax(nextNeighbour, intArray[index]) == intArray[index])
+				{
+					return index;
+				}
+			}
+			return -1;
 		}
 	}
 }
