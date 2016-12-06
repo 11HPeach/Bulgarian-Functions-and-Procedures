@@ -36,7 +36,7 @@ namespace FunctionsAndProcedures
 		/// Write a code that by given name prints on the console "Hello, <name>!" (for example: "Hello, Peter!").
 		/// </summary>
 		/// <param name="name">The name to output along with the text</param>
-		private static void Task1(string name) => Console.WriteLine("Hello, {0}!", name);
+		private static void Task1(string name) => Console.WriteLine("Hello, {0}.", name);
 
 		/// <summary>
 		/// Create a method GetMax() with two integer (int) parameters, that returns maximal of the two numbers. 
