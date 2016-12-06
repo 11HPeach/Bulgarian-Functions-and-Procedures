@@ -7,7 +7,7 @@ using System.Numerics;
 namespace FunctionsAndProcedures
 {
 	/// <summary>
-	/// Tasks 1-8 from page 347 of the book "Fundamentals of Computer Programming with C# (The Bulgarian C# Book)"
+	/// Tasks 1-9 from page 347 of the book "Fundamentals of Computer Programming with C# (The Bulgarian C# Book)"
 	/// </summary>
 	internal class Program
 	{
